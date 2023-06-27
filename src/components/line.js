@@ -1,8 +1,4 @@
-import useDragger from "../hooks/useDragger";
-
 export default function Line({ angle, id }) {
-  useDragger(id);
-
   const style = {
     backgroundColor: "black",
     width: "300px",
