@@ -1,13 +1,13 @@
 import "./App.css";
 import useDragger from "./hooks/useDragger";
+import Line from "./components/line";
 
 function App() {
-  useDragger("pink-box");
-
   return (
     <div className="App">
       <div className="container">
-        <div id="pink-box" className="box"></div>
+        <Line id={"line1"} angle={45}></Line>
+        <Line id={"line2"} angle={-45}></Line>
       </div>
     </div>
   );
