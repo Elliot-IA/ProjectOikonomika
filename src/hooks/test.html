@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>HTML5 Canvas Tag</title>
+  </head>
+
+  <body>
+    <canvas id="newCanvas" width="101" height="101"></canvas>
+    <script>
+      var c = document.getElementById("newCanvas");
+      var ctx = c.getContext("2d");
+
+      // Draw shapes
+      ctx.beginPath();
+      ctx.moveTo(0, 0);
+      ctx.quadraticCurveTo(0, 100, 100, 100);
+      ctx.stroke();
+    </script>
+  </body>
+</html>
