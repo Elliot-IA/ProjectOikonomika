@@ -44,8 +44,8 @@ function useDragger(centerID, id1, id2) {
     const moveIntersect = () => {
       // 280 is width of line - width of ball
       const centerX = (coords.y2 - coords.y1 + coords.x1 + coords.x2 + 280) / 2;
-      // 140 is the 280/2 and 5 is hight of line/2
-      const centerY = centerX - (coords.x1 + 140) + coords.y1 - 5;
+      // 140 is the 280/2 and 1 is hight of line/2 - one side of padding
+      const centerY = centerX - (coords.x1 + 140) + coords.y1 - 1;
       center.style.top = `${centerY}px`;
       center.style.left = `${centerX}px`;
     };
@@ -112,8 +112,16 @@ function useDragger(centerID, id1, id2) {
     container.addEventListener("mousemove", onMouseMove2);
     container.addEventListener("mouseleave", onMouseUp2);
 
+    const reset = () => {
+      isClicked1.current = false;
+      isClicked2.current = false;
+    };
+    container.addEventListener("mouseup", reset);
+
     //removes event listeners
     const cleanup = () => {
+      container.removeEventListener("mouseup", reset);
+
       target1.removeEventListener("mousedown", onMouseDown1);
       target1.removeEventListener("mouseup", onMouseUp1);
       container.removeEventListener("mousemove", onMouseMove1);
