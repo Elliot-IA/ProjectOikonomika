@@ -1,4 +1,3 @@
-import useDragger from "../hooks/useDragger";
 import useIntersect from "../hooks/useIntersect";
 
 export default function Point({ trackID }) {

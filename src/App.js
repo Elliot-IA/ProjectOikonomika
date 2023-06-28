@@ -6,8 +6,8 @@ function App() {
   return (
     <div className="App">
       <div className="container">
-        <Line id={"line1"} angle={45}></Line>
-        <Line id={"line2"} angle={-45}></Line>
+        <Line id={"line1"} angle={45} x={300} y={300}></Line>
+        <Line id={"line2"} angle={-45} x={300} y={300}></Line>
         <Point trackID={["line1", "line2"]}></Point>
       </div>
     </div>

@@ -24,21 +24,47 @@ function useDragger(centerID, id1, id2) {
   });
 
   useEffect(() => {
+    //gets targets
     const target1 = document.getElementById(id1);
     const target2 = document.getElementById(id2);
     const center = document.getElementById(centerID);
     const container = target1.parentElement;
 
+    //saves initial positions
+    coords1.current.lastX = target1.offsetLeft;
+    coords1.current.lastY = target1.offsetTop;
+    coords2.current.lastX = target2.offsetLeft;
+    coords2.current.lastY = target2.offsetTop;
+    coords.x1 = target1.offsetLeft;
+    coords.y1 = target1.offsetTop;
+    coords.x2 = target2.offsetLeft;
+    coords.y2 = target2.offsetTop;
+
+    //func to do math to find center
+    const moveIntersect = () => {
+      // 280 is width of line - width of ball
+      const centerX = (coords.y2 - coords.y1 + coords.x1 + coords.x2 + 280) / 2;
+      // 140 is the 280/2 and 5 is hight of line/2
+      const centerY = centerX - (coords.x1 + 140) + coords.y1 - 5;
+      center.style.top = `${centerY}px`;
+      center.style.left = `${centerX}px`;
+    };
+    //initialize center
+    moveIntersect();
+
+    //when clicked save pos of click
     const onMouseDown1 = (e) => {
       isClicked1.current = true;
       coords1.current.startX = e.clientX;
       coords1.current.startY = e.clientY;
     };
+    //when let go save pos
     const onMouseUp1 = (e) => {
       isClicked1.current = false;
       coords1.current.lastX = target1.offsetLeft;
       coords1.current.lastY = target1.offsetTop;
     };
+    //when moved, set pos to last pos plus change in mouse from start
     const onMouseMove1 = (e) => {
       if (!isClicked1.current) return;
 
@@ -51,7 +77,7 @@ function useDragger(centerID, id1, id2) {
       coords.y1 = nextY;
       moveIntersect();
     };
-
+    //same as above. I tried for about an hour ro combine these but could not
     const onMouseDown2 = (e) => {
       isClicked2.current = true;
       coords2.current.startX = e.clientX;
@@ -75,25 +101,18 @@ function useDragger(centerID, id1, id2) {
       moveIntersect();
     };
 
-    const moveIntersect = () => {
-      // 280 is width of line - width of ball
-      const centerX = (coords.y2 - coords.y1 + coords.x1 + coords.x2 + 280) / 2;
-      // 140 is the 280/2 and 5 is hight of line/2
-      const centerY = centerX - (coords.x1 + 140) + coords.y1 - 5;
-      center.style.top = `${centerY}px`;
-      center.style.left = `${centerX}px`;
-    };
-
+    //event listeners for 1
     target1.addEventListener("mousedown", onMouseDown1);
     target1.addEventListener("mouseup", onMouseUp1);
     container.addEventListener("mousemove", onMouseMove1);
     container.addEventListener("mouseleave", onMouseUp1);
-
+    //event listeners for 2
     target2.addEventListener("mousedown", onMouseDown2);
     target2.addEventListener("mouseup", onMouseUp2);
     container.addEventListener("mousemove", onMouseMove2);
     container.addEventListener("mouseleave", onMouseUp2);
 
+    //removes event listeners
     const cleanup = () => {
       target1.removeEventListener("mousedown", onMouseDown1);
       target1.removeEventListener("mouseup", onMouseUp1);
