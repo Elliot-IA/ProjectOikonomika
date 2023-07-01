@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 
 function useDragger(id) {
   const isClicked = useRef(false);
@@ -37,6 +37,7 @@ function useDragger(id) {
 
       target.style.top = `${nextY}px`;
       target.style.left = `${nextX}px`;
+      console.log(nextY + " " + nextX);
     };
 
     target.addEventListener("mousedown", onMouseDown);
