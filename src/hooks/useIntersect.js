@@ -43,9 +43,9 @@ function useDragger(centerID, id1, id2) {
     //func to do math to find center
     const moveIntersect = () => {
       // 280 is width of line - width of ball
-      const centerX = (coords.y2 - coords.y1 + coords.x1 + coords.x2 + 280) / 2;
+      const centerX = (coords.y2 - coords.y1 + coords.x1 + coords.x2 + 580) / 2;
       // 140 is the 280/2 and 1 is hight of line/2 - one side of padding
-      const centerY = centerX - (coords.x1 + 140) + coords.y1 - 1;
+      const centerY = centerX - (coords.x1 + 290) + coords.y1 - 1;
       center.style.top = `${centerY}px`;
       center.style.left = `${centerX}px`;
     };

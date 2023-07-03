@@ -1,7 +1,7 @@
-export default function Line({ angle, id, x, y }) {
+export default function Line({ angle, id, x, y, l }) {
   const styleColor = {
     backgroundColor: "black",
-    width: "300px",
+    width: `${l}px`,
     height: "10px",
     borderRadius: "5px",
     cursor: "pointer",
