@@ -71,9 +71,6 @@ function useDragger(centerID, id1, id2) {
       const nextX = e.clientX - coords1.current.startX + coords1.current.lastX;
       const nextY = e.clientY - coords1.current.startY + coords1.current.lastY;
 
-        
-        document.getElementById("pasta").innerHTML = document.getElementById("center").offsetLeft;
-        
       target1.style.top = `${nextY}px`;
       target1.style.left = `${nextX}px`;
       coords.x1 = nextX;
@@ -91,16 +88,11 @@ function useDragger(centerID, id1, id2) {
       coords2.current.lastX = target2.offsetLeft;
       coords2.current.lastY = target2.offsetTop;
     };
-      var i = 0;
     const onMouseMove2 = (e) => {
       if (!isClicked2.current) return;
 
       const nextX = e.clientX - coords2.current.startX + coords2.current.lastX;
       const nextY = e.clientY - coords2.current.startY + coords2.current.lastY;
-
-        document.getElementById("pasta").innerHTML = (800-document.getElementById("center").offsetTop);
-        document.getElementById("pizza").innerHTML = document.getElementById("center").offsetLeft;
-                        i++;
 
       target2.style.top = `${nextY}px`;
       target2.style.left = `${nextX}px`;

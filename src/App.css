@@ -7,9 +7,13 @@ main {
 }
 
 .container {
-  position: relative;
-  border: 1px solid black;
-  overflow: hidden;
+position: relative;
+    border: 1px solid black;
+    overflow: hidden;
+    zoom: 0.7;
+    left: 50%;
+    transform: translate(-50%);
+    border-radius: 14px;
 }
 
 .moveable {
@@ -19,4 +23,20 @@ main {
 .textHeader {
   text-align: center;
   width: 100%;
+}
+#pizza{
+    
+}
+#pasta{
+    
+}
+#quantityLegend{
+    left: 50%;
+    transform: translate(-50%);
+    position: absolute;
+}
+#supplyLegend{
+    bottom: 50%;
+    transform: rotate(90deg);
+    position: absolute;
 }
