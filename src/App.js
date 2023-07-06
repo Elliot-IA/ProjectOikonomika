@@ -3,6 +3,8 @@ import Line from "./components/line";
 import Point from "./components/point";
 import VerticleGridLine from "./components/verticleGridLine";
 import HorizontialGridLine from "./components/horizontialGridLine";
+import Follower from "./components/follower";
+import xyText from "./components/xyText";
 
 function App() {
   const size = {
@@ -18,10 +20,15 @@ function App() {
       <div className="container" style={size}>
         <VerticleGridLine y={width} n={numberY}></VerticleGridLine>
         <HorizontialGridLine x={width} n={numberX}></HorizontialGridLine>
-        <Line id={"line1"} angle={45} x={0} y={500} l={600}></Line>
-        <Line id={"line2"} angle={-45} x={0} y={500} l={600}></Line>
+        <Line id={"line1"} angle={45} x={0} y={500} l={600}>Supply</Line>
+        <Line id={"line2"} angle={-45} x={0} y={500} l={600}>Demand</Line>
         <Point trackID={["line1", "line2"]}></Point>
+        <Follower trackID={["line1", "line2"]}></Follower>
       </div>
+
+        <div id="quantityLegend">Quantity of Strawberries</div>
+        <div id="priceLegend">Price of Strawberries</div>
+
     </div>
   );
 }
