@@ -24,11 +24,12 @@ function App() {
         <Line id={"line2"} angle={-45} x={0} y={500} l={600}>Demand</Line>
         <Point trackID={["line1", "line2"]}></Point>
         <Follower trackID={["line1", "line2"]}></Follower>
+<div id="priceLegend"><div id="priceStrawberriesContainer">Price of Strawberries</div></div>
+
       </div>
 
         <div id="quantityLegend">Quantity of Strawberries</div>
-        <div id="priceLegend">Price of Strawberries</div>
-
+        
     </div>
   );
 }

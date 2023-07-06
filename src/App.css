@@ -7,7 +7,7 @@ main {
 }
 
 .container {
-position: relative;
+    position: relative;
     border: 1px solid black;
     overflow: hidden;
     zoom: 0.7;
@@ -35,8 +35,14 @@ position: relative;
     transform: translate(-50%);
     position: absolute;
 }
-#supplyLegend{
+#priceLegend{
     bottom: 50%;
-    transform: rotate(90deg);
+    transform: translate(0px, -50%);
     position: absolute;
+    left: -70px;
+    z-index: 10000;
+    font-size: 23px; 
+}
+#priceStrawberriesContainer{
+    transform: rotate(-90deg);
 }
