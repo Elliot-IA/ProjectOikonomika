@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react";
+import env from "../env";
 
 function useDragger(centerID, id1, id2) {
   const isClicked1 = useRef(false);
@@ -42,12 +43,24 @@ function useDragger(centerID, id1, id2) {
 
     //func to do math to find center
     const moveIntersect = () => {
-      // 280 is width of line - width of ball
-      const centerX = (coords.y2 - coords.y1 + coords.x1 + coords.x2 + 580) / 2;
+      const num = env.lengthLine - 2 * env.radiusBall;
+
+      const centerX = (coords.y2 - coords.y1 + coords.x1 + coords.x2 + num) / 2;
       // 140 is the 280/2 and 1 is hight of line/2 - one side of padding
-      const centerY = centerX - (coords.x1 + 290) + coords.y1 - 1;
+      const centerY = centerX - (coords.x1 + num / 2) + coords.y1 - 1;
       center.style.top = `${centerY}px`;
       center.style.left = `${centerX}px`;
+      // 800 is width of canvas 10 is width of ball/2
+      document.getElementById("price").innerHTML =
+        (env.height - document.getElementById("center").offsetTop - env.radiusBall) / env.scale;
+      document.getElementById("quantity").innerHTML =
+        (document.getElementById("center").offsetLeft + env.radiusBall) / env.scale;
+
+      document.getElementById("side").style.width = `${centerX + env.radiusBall}px`;
+      document.getElementById("side").style.top = `${centerY + env.radiusBall - 1}px`;
+      document.getElementById("up").style.left = `${centerX + env.radiusBall - 1}px`;
+      document.getElementById("up").style.height = `${env.width - centerY}px`;
+      document.getElementById("up").style.top = `${centerY + env.radiusBall}px`;
     };
     //initialize center
     moveIntersect();
@@ -71,9 +84,6 @@ function useDragger(centerID, id1, id2) {
       const nextX = e.clientX - coords1.current.startX + coords1.current.lastX;
       const nextY = e.clientY - coords1.current.startY + coords1.current.lastY;
 
-        
-        document.getElementById("pasta").innerHTML = document.getElementById("center").offsetLeft;
-        
       target1.style.top = `${nextY}px`;
       target1.style.left = `${nextX}px`;
       coords.x1 = nextX;
@@ -91,16 +101,11 @@ function useDragger(centerID, id1, id2) {
       coords2.current.lastX = target2.offsetLeft;
       coords2.current.lastY = target2.offsetTop;
     };
-      var i = 0;
     const onMouseMove2 = (e) => {
       if (!isClicked2.current) return;
 
       const nextX = e.clientX - coords2.current.startX + coords2.current.lastX;
       const nextY = e.clientY - coords2.current.startY + coords2.current.lastY;
-
-        document.getElementById("pasta").innerHTML = (800-document.getElementById("center").offsetTop);
-        document.getElementById("pizza").innerHTML = document.getElementById("center").offsetLeft;
-                        i++;
 
       target2.style.top = `${nextY}px`;
       target2.style.left = `${nextX}px`;

@@ -1,8 +1,10 @@
-export default function Line({ angle, id, x, y, l }) {
+import env from "../env.js";
+
+export default function Line({ angle, id, x, y }) {
   const styleColor = {
     backgroundColor: "black",
-    width: `${l}px`,
-    height: "10px",
+    width: `${env.lengthLine}px`,
+    height: `${env.widthLine}px`,
     borderRadius: "5px",
     cursor: "pointer",
   };
