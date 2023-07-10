@@ -1,15 +1,28 @@
 import "./App.css";
 import env from "./env.js";
-import Grid from "./components/gird";
+import Graph from "./components/graph";
+import Settings from "./components/settings";
+import { useState } from "react";
 
 function App() {
-  const width = env.width;
-  const height = env.height;
+  const [envObject, setEnv] = useState(env);
+
+  const handleEnvChange = (event) => {
+    const { type, name, value } = event.target;
+    if (type === "number") {
+      if (Number(value) !== 0) {
+        setEnv((prevObject) => ({ ...prevObject, [name]: Number(value) }));
+      }
+    } else {
+      setEnv((prevObject) => ({ ...prevObject, [name]: value }));
+    }
+  };
 
   return (
     <div className="App" style={{ display: "grid", placeItems: "center" }}>
-      <div>Supply & Demand Live</div>
-      <Grid></Grid>
+      <h1>Supply & Demand Live</h1>
+      <Graph env={envObject}></Graph>
+      <Settings env={envObject} setEnv={setEnv}></Settings>
     </div>
   );
 }

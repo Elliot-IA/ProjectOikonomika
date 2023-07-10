@@ -1,6 +1,6 @@
 import useIntersect from "../hooks/useIntersect";
 
-export default function Follower({ trackID }) {
+export default function Follower({ env, trackID }) {
   const stylePos = {
     backgroundColor: "white",
     width: "125px",
@@ -16,7 +16,7 @@ export default function Follower({ trackID }) {
   const titleStyle = {
     display: "block",
   };
-  useIntersect("center2", trackID[0], trackID[1]);
+  useIntersect("center2", trackID[0], trackID[1], env);
 
   return (
     <div id="center2" style={stylePos}>

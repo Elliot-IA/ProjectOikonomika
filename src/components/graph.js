@@ -1,10 +1,6 @@
-import env from "../env.js";
 import Canvas from "./canvas";
 
-export default function Grid() {
-  const width = env.width;
-  const height = env.height;
-
+export default function Graph({ env }) {
   return (
     <div style={{ display: "Grid", gridTemplateColumns: "30px auto", gap: "2px" }}>
       <div
@@ -17,9 +13,9 @@ export default function Grid() {
           justifyContent: "center",
         }}
       >
-        Price
+        <strong>{"Price" + (env.name ? " of " + env.name : "")}</strong>
       </div>
-      <Canvas></Canvas>
+      <Canvas env={env}></Canvas>
       <div style={{ height: "30px", width: "30px" }}>{/*SPACER*/}</div>
       <div
         style={{
@@ -30,7 +26,7 @@ export default function Grid() {
           justifyContent: "center",
         }}
       >
-        Quantity
+        <strong>{"Quantity" + (env.name ? " of " + env.name : "")}</strong>
       </div>
     </div>
   );

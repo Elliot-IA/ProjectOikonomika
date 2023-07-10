@@ -1,7 +1,6 @@
 import { useEffect, useRef } from "react";
-import env from "../env";
 
-function useDragger(centerID, id1, id2) {
+function useDragger(centerID, id1, id2, env) {
   const isClicked1 = useRef(false);
   const isClicked2 = useRef(false);
 
@@ -59,7 +58,7 @@ function useDragger(centerID, id1, id2) {
       document.getElementById("side").style.width = `${centerX + env.radiusBall}px`;
       document.getElementById("side").style.top = `${centerY + env.radiusBall - 1}px`;
       document.getElementById("up").style.left = `${centerX + env.radiusBall - 1}px`;
-      document.getElementById("up").style.height = `${env.width - centerY}px`;
+      //document.getElementById("up").style.height = `${env.height - centerY}px`;
       document.getElementById("up").style.top = `${centerY + env.radiusBall}px`;
     };
     //initialize center

@@ -20,4 +20,7 @@ export default {
 
   //ball radius
   radiusBall: 10,
+
+  //names
+  name: "",
 };

@@ -1,6 +1,4 @@
-import env from "../env.js";
-
-export default function GridLine({ d }) {
+export default function GridLine({ env }) {
   const lineWidth = env.lineWidth;
   const nX = Math.floor(env.width / env.lineWidth);
   const nY = Math.floor(env.height / env.lineWidth);

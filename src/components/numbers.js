@@ -1,6 +1,4 @@
-import env from "../env.js";
-
-export default function Numbers({ d }) {
+export default function Numbers({ env }) {
   const lineWidth = env.lineWidth;
   const width = env.width;
   const height = env.height;
