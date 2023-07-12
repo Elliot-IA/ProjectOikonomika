@@ -30,8 +30,9 @@ export default function Settings({ env, setEnv }) {
     const { type, name, value } = event.target;
     let setValue = {};
     if (type === "number") {
-      if (Number(value) !== 0) {
-        setValue = setEnvHelper(name, Number(value));
+      const num = Number(value);
+      if (num !== 0 && Math.round(num) === num) {
+        setValue = setEnvHelper(name, num);
       }
     } else {
       setValue = { ...env, [name]: value };
@@ -48,16 +49,16 @@ export default function Settings({ env, setEnv }) {
     { name: "xLabelsNum", display: "Number of X labels", type: "number", fill: env.labelX },
     { name: "yLabelsNum", display: "Number of Y labels", type: "number", fill: env.labelY },
     { name: "space", display: "Line Space (px)", type: "number", fill: env.lineWidth },
+    { name: "scaleX", display: "Scale X", type: "number", fill: Math.round(env.width / (env.labelX + 1) / env.scaleX) },
     {
-      name: "scaleX",
-      display: "Scale X",
+      name: "scaleY",
+      display: "Scale Y",
       type: "number",
-      fill: env.width / (env.labelX + 1) / env.scaleX,
+      fill: Math.round(env.height / (env.labelY + 1) / env.scaleY),
     },
-    { name: "scaleY", display: "Scale Y", type: "number", fill: env.height / (env.labelY + 1) / env.scaleY },
   ];
   return (
-    <div>
+    <div style={{ border: "1px solid black" }}>
       {values.map((item) => (
         <Item
           key={item.name}
@@ -74,9 +75,9 @@ export default function Settings({ env, setEnv }) {
 
 function Item({ display, name, handleEnvChange, type, fill }) {
   return (
-    <div style={{ display: "flex", alignItems: "center" }}>
-      <div style={{ marginRight: "10px" }}>{display + ":"}</div>
-      <input type={type} name={name} onChange={handleEnvChange} placeholder={fill} />
+    <div style={{ display: "flex", alignItems: "center", margin: "5px" }}>
+      <div style={{ marginRight: "10px", width: "150px" }}>{display + ":"}</div>
+      <input type={type} name={name} onChange={handleEnvChange} value={fill} />
     </div>
   );
 }

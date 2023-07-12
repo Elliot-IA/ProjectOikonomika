@@ -13,7 +13,7 @@ export default function Numbers({ env }) {
   const styleX = (n) => {
     return {
       top: height,
-      left: `${(spaceX * (n + 1) - 0.5) * lineWidth + 20 + 1}px`,
+      left: `${(spaceX * (n + 1) - 0.5) * lineWidth + 80 + 1}px`,
       position: "absolute",
       height: "20px",
       width: lineWidth,
@@ -29,7 +29,7 @@ export default function Numbers({ env }) {
       left: "0px",
       position: "absolute",
       height: lineWidth,
-      width: "20px",
+      width: "80px",
       display: "flex",
       alignItems: "center",
       justifyContent: "right",
@@ -40,12 +40,12 @@ export default function Numbers({ env }) {
     <div>
       {[...Array(nY).keys()].map((m) => (
         <div key={m} style={styleY(m)}>
-          {(height - spaceY * (m + 1) * lineWidth) / env.scaleY}
+          {"$" + ((height - spaceY * (m + 1) * lineWidth) / env.scaleY).toFixed(2)}
         </div>
       ))}
       {[...Array(nX).keys()].map((m) => (
         <div key={m} style={styleX(m)}>
-          {(spaceX * (m + 1) * lineWidth) / env.scaleX}
+          {Math.round((spaceX * (m + 1) * lineWidth) / env.scaleX)}
         </div>
       ))}
     </div>

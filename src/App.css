@@ -15,16 +15,11 @@ main {
   position: absolute;
 }
 
-.inner {
-  position: "absolute";
-}
-#quantityLegend {
-  left: 50%;
-  transform: translate(-50%);
-  position: absolute;
-}
-#supplyLegend {
-  bottom: 50%;
-  transform: rotate(90deg);
-  position: absolute;
+.not-selectable {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }

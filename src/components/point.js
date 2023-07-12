@@ -2,7 +2,7 @@ import useIntersect from "../hooks/useIntersect";
 
 export default function Point({ env, trackID }) {
   const style = {
-    backgroundColor: "red",
+    backgroundColor: "black",
     width: `${2 * env.radiusBall}px`,
     height: `${2 * env.radiusBall}px`,
     borderRadius: `${env.radiusBall}px`,

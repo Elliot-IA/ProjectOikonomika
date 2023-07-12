@@ -11,7 +11,6 @@ function App() {
 
   useEffect(() => {
     const urlParams = queryString.parse(window.location.search);
-    console.log("parse");
     Object.keys(urlParams).forEach((key) => {
       urlParams[key] = key !== "name" ? Number(urlParams[key]) : urlParams[key];
     });

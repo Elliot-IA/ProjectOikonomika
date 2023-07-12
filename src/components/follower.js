@@ -7,7 +7,7 @@ export default function Follower({ env, trackID }) {
     height: "40px",
     borderRadius: "10px",
     position: "absolute",
-    marginLeft: "30px",
+    marginLeft: "40px",
     marginTop: "-10px",
     border: "1px solid black",
     textAlign: "center",
@@ -20,13 +20,13 @@ export default function Follower({ env, trackID }) {
 
   return (
     <div id="center2" style={stylePos}>
-      <u style={titleStyle}>
-        Price: <span id="price">{/*document.getElementById("center").offsetLeft*/}</span>
-      </u>
+      <div style={titleStyle} className="not-selectable">
+        Price: $<span id="price">{/*document.getElementById("center").offsetLeft*/}</span>
+      </div>
 
-      <u style={titleStyle}>
+      <div style={titleStyle} className="not-selectable">
         Quantity: <span id="quantity">{/*document.getElementById("center").offsetTop*/}</span>
-      </u>
+      </div>
     </div>
   );
 }
