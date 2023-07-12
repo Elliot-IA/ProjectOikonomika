@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/supply_and_demand/static/css/main.29b4a3bf.css",
+    "main.js": "/supply_and_demand/static/js/main.c7de6c57.js",
+    "index.html": "/supply_and_demand/index.html",
+    "main.29b4a3bf.css.map": "/supply_and_demand/static/css/main.29b4a3bf.css.map",
+    "main.c7de6c57.js.map": "/supply_and_demand/static/js/main.c7de6c57.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.29b4a3bf.css",
+    "static/js/main.c7de6c57.js"
+  ]
+}
