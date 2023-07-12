@@ -51,9 +51,9 @@ function useDragger(centerID, id1, id2, env) {
       center.style.left = `${centerX}px`;
       // 800 is width of canvas 10 is width of ball/2
       document.getElementById("price").innerHTML =
-        (env.height - document.getElementById("center").offsetTop - env.radiusBall) / env.scale;
+        (env.height - document.getElementById("center").offsetTop - env.radiusBall) / env.scaleY;
       document.getElementById("quantity").innerHTML =
-        (document.getElementById("center").offsetLeft + env.radiusBall) / env.scale;
+        (document.getElementById("center").offsetLeft + env.radiusBall) / env.scaleX;
 
       document.getElementById("side").style.width = `${centerX + env.radiusBall}px`;
       document.getElementById("side").style.top = `${centerY + env.radiusBall - 1}px`;
@@ -146,7 +146,7 @@ function useDragger(centerID, id1, id2, env) {
     };
 
     return cleanup;
-  }, [centerID, id1, id2]);
+  }, [centerID, id1, id2, env]);
 }
 
 export default useDragger;

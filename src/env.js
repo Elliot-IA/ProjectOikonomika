@@ -1,18 +1,19 @@
-export default {
+const env = {
   //size of canvas
-  width: 800,
-  height: 800,
+  width: 1050,
+  height: 650,
   //space between grid lines (lineWidth should divide width and height)
-  lineWidth: 25,
+  lineWidth: 50,
   // numberY = Math.floor(height / lineWidth);
   // numberX = Math.floor(width / lineWidth);
 
   //number of labels (labelD+1 should divide width/lineWidth)
-  labelX: 7,
-  labelY: 7,
+  labelX: 20,
+  labelY: 12,
 
   //cords are divided by scale
-  scale: 100,
+  scaleY: 25,
+  scaleX: 50,
 
   //length of line
   lengthLine: 1000,
@@ -24,3 +25,5 @@ export default {
   //names
   name: "",
 };
+
+export default env;

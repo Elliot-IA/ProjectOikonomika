@@ -1,22 +1,24 @@
 import "./App.css";
 import env from "./env.js";
 import Graph from "./components/graph";
+import AdvancedSettings from "./components/advancedSettings";
 import Settings from "./components/settings";
-import { useState } from "react";
+import queryString from "query-string";
+import { useState, useEffect } from "react";
 
 function App() {
   const [envObject, setEnv] = useState(env);
 
-  const handleEnvChange = (event) => {
-    const { type, name, value } = event.target;
-    if (type === "number") {
-      if (Number(value) !== 0) {
-        setEnv((prevObject) => ({ ...prevObject, [name]: Number(value) }));
-      }
-    } else {
-      setEnv((prevObject) => ({ ...prevObject, [name]: value }));
+  useEffect(() => {
+    const urlParams = queryString.parse(window.location.search);
+    console.log("parse");
+    Object.keys(urlParams).forEach((key) => {
+      urlParams[key] = key !== "name" ? Number(urlParams[key]) : urlParams[key];
+    });
+    if (Object.keys(urlParams).length > 0) {
+      setEnv({ ...urlParams });
     }
-  };
+  }, []);
 
   return (
     <div className="App" style={{ display: "grid", placeItems: "center" }}>

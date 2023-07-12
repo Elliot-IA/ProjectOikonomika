@@ -40,12 +40,12 @@ export default function Numbers({ env }) {
     <div>
       {[...Array(nY).keys()].map((m) => (
         <div key={m} style={styleY(m)}>
-          {(height - spaceY * (m + 1) * lineWidth) / env.scale}
+          {(height - spaceY * (m + 1) * lineWidth) / env.scaleY}
         </div>
       ))}
       {[...Array(nX).keys()].map((m) => (
         <div key={m} style={styleX(m)}>
-          {(spaceX * (m + 1) * lineWidth) / env.scale}
+          {(spaceX * (m + 1) * lineWidth) / env.scaleX}
         </div>
       ))}
     </div>
