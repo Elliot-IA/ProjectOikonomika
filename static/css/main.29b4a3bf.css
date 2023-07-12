@@ -1,2 +1,0 @@
-main{display:grid;height:100vh;place-items:center;width:100vw}.container{border:1px solid #000;overflow:hidden}.moveable{position:absolute}.inner{position:"absolute"}#quantityLegend{left:50%;position:absolute;-webkit-transform:translate(-50%);transform:translate(-50%)}#supplyLegend{bottom:50%;position:absolute;-webkit-transform:rotate(90deg);transform:rotate(90deg)}
-/*# sourceMappingURL=main.29b4a3bf.css.map*/
