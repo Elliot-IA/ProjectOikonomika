@@ -9,6 +9,7 @@ import Key from "./key.js";
 export default function Canvas({ env }) {
   const width = env.width;
   const height = env.height;
+  const offset = ((Math.sqrt(2) / 2) * env.lengthLine) / 2;
 
   return (
     <div style={{ width: `${width + 80}px`, height: `${height + 20}px`, position: "relative" }}>
@@ -20,8 +21,20 @@ export default function Canvas({ env }) {
         <GridLine env={env}></GridLine>
         <Key></Key>
         <ConnectionLines></ConnectionLines>
-        <Line id={"demand"} angle={45} x={-100} y={400 - 9} color={"blue"}></Line>
-        <Line id={"supply"} angle={-45} x={-100} y={400 - 9} color={"red"}></Line>
+        <Line
+          id={"demand"}
+          angle={45}
+          x={0 - (env.lengthLine / 2 - offset) + 2}
+          y={height - 2 * offset + offset}
+          color={"blue"}
+        ></Line>
+        <Line
+          id={"supply"}
+          angle={-45}
+          x={0 - (env.lengthLine / 2 - offset)}
+          y={height - offset - 10}
+          color={"red"}
+        ></Line>
         <Point env={env} trackID={["demand", "supply"]}></Point>
         <Follower env={env} trackID={["demand", "supply"]}></Follower>
       </div>
