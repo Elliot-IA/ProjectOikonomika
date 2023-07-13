@@ -51,8 +51,8 @@ function useDragger(centerID, id1, id2, env) {
       center.style.left = `${centerX}px`;
       // 800 is width of canvas 10 is width of ball/2
       document.getElementById("price").innerHTML = (
-        (env.height - document.getElementById("center").offsetTop - env.radiusBall) /
-        env.scaleY
+        (env.height - document.getElementById("center").offsetTop - env.radiusBall) / env.scaleY +
+        0.04
       ).toFixed(2);
       document.getElementById("quantity").innerHTML = (
         (document.getElementById("center").offsetLeft + env.radiusBall) /
