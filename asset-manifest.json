@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/ProjectOikonomika/static/css/main.3d450cc0.css",
-    "main.js": "/ProjectOikonomika/static/js/main.41acac81.js",
+    "main.js": "/ProjectOikonomika/static/js/main.3fac9db2.js",
     "index.html": "/ProjectOikonomika/index.html",
     "main.3d450cc0.css.map": "/ProjectOikonomika/static/css/main.3d450cc0.css.map",
-    "main.41acac81.js.map": "/ProjectOikonomika/static/js/main.41acac81.js.map"
+    "main.3fac9db2.js.map": "/ProjectOikonomika/static/js/main.3fac9db2.js.map"
   },
   "entrypoints": [
     "static/css/main.3d450cc0.css",
-    "static/js/main.41acac81.js"
+    "static/js/main.3fac9db2.js"
   ]
 }
