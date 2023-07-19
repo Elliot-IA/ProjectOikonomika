@@ -52,11 +52,11 @@ function useDragger(centerID, id1, id2, env) {
       // 800 is width of canvas 10 is width of ball/2
       document.getElementById("price").innerHTML = (
         (env.height - document.getElementById("center").offsetTop - env.radiusBall) / env.scaleY +
-        0.04
+        0.08
       ).toFixed(2);
       document.getElementById("quantity").innerHTML = (
-        (document.getElementById("center").offsetLeft + env.radiusBall) /
-        env.scaleX
+        (document.getElementById("center").offsetLeft + env.radiusBall) / env.scaleX -
+        0.02
       ).toFixed(2);
 
       document.getElementById("side").style.width = `${centerX + env.radiusBall}px`;
