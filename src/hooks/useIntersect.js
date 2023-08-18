@@ -30,6 +30,13 @@ function useDragger(centerID, id1, id2, env) {
     const center = document.getElementById(centerID);
     const container = target1.parentElement;
 
+    //other items
+    const follower = document.getElementById("center2");
+    const price = document.getElementById("price");
+    const quantity = document.getElementById("quantity");
+    const side = document.getElementById("side");
+    const up = document.getElementById("up");
+
     //saves initial positions
     coords1.current.lastX = target1.offsetLeft;
     coords1.current.lastY = target1.offsetTop;
@@ -50,20 +57,20 @@ function useDragger(centerID, id1, id2, env) {
       center.style.top = `${centerY}px`;
       center.style.left = `${centerX}px`;
       // 800 is width of canvas 10 is width of ball/2
-      document.getElementById("price").innerHTML = (
-        (env.height - document.getElementById("center").offsetTop - env.radiusBall) / env.scaleY +
-        0.08
-      ).toFixed(2);
-      document.getElementById("quantity").innerHTML = (
-        (document.getElementById("center").offsetLeft + env.radiusBall) / env.scaleX -
-        0.02
-      ).toFixed(2);
 
-      document.getElementById("side").style.width = `${centerX + env.radiusBall}px`;
-      document.getElementById("side").style.top = `${centerY + env.radiusBall - 1}px`;
-      document.getElementById("up").style.left = `${centerX + env.radiusBall - 1}px`;
-      //document.getElementById("up").style.height = `${env.height - centerY}px`;
-      document.getElementById("up").style.top = `${centerY + env.radiusBall}px`;
+      price.innerHTML = ((env.height - centerY - env.radiusBall) / env.scaleY + 0.08).toFixed(2);
+      quantity.innerHTML = ((centerX + env.radiusBall) / env.scaleX - 0.02).toFixed(2);
+
+      side.style.width = `${centerX + env.radiusBall}px`;
+      side.style.top = `${centerY + env.radiusBall - 1}px`;
+      up.style.left = `${centerX + env.radiusBall - 1}px`;
+      up.style.top = `${centerY + env.radiusBall}px`;
+      
+      follower.style.top = `${centerY}px`;
+      follower.style.left = `${centerX}px`;
+      if (centerX < 0.75 * env.width) follower.style.marginLeft = '40px';
+      else follower.style.marginLeft = '-165px';
+      
     };
     //initialize center
     moveIntersect();

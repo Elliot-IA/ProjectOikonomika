@@ -16,7 +16,6 @@ export default function Follower({ env, trackID }) {
   const titleStyle = {
     display: "block",
   };
-  useIntersect("center2", trackID[0], trackID[1], env);
 
   return (
     <div id="center2" style={stylePos}>
