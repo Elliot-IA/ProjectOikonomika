@@ -24,17 +24,11 @@ export default function Canvas({ env }) {
         <Line
           id={"demand"}
           angle={45}
-          x={0 - (env.lengthLine / 2 - offset) + 2.5}
-          y={height - 2 * offset + offset + 1.5}
-          //-144, 298
           color={"blue"}
         ></Line>
         <Line
           id={"supply"}
           angle={-45}
-          x={0 - (env.lengthLine / 2 - offset) + 2.5}
-          //-144, 288
-          y={height - offset - 9.5}
           color={"red"}
         ></Line>
         <Point env={env} trackID={["demand", "supply"]}></Point>

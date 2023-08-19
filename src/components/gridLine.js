@@ -9,7 +9,7 @@ export default function GridLine({ env }) {
       width: "100%",
       height: "2px",
       position: "absolute",
-      top: `${(n + 1) * lineWidth}px`,
+      top: `${(n + 1) * lineWidth-1}px`,//1 is width/2
       left: "0px", //add 1 so first line is not at x=0
     };
   };
@@ -20,7 +20,7 @@ export default function GridLine({ env }) {
       height: "100%",
       position: "absolute",
       top: "0px",
-      left: `${(n + 1) * lineWidth}px`, //add 1 so first line is not at x=0
+      left: `${(n + 1) * lineWidth -1}px`, //add 1 so first line is not at x=0
     };
   };
 

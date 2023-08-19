@@ -37,11 +37,6 @@ function useDragger(centerID, id1, id2, env) {
     const side = document.getElementById("side");
     const up = document.getElementById("up");
 
-    //saves initial positions
-    coords1.current.lastX = target1.offsetLeft;
-    coords1.current.lastY = target1.offsetTop;
-    coords2.current.lastX = target2.offsetLeft;
-    coords2.current.lastY = target2.offsetTop;
     coords.x1 = target1.offsetLeft;
     coords.y1 = target1.offsetTop;
     coords.x2 = target2.offsetLeft;
@@ -49,22 +44,25 @@ function useDragger(centerID, id1, id2, env) {
 
     //func to do math to find center
     const moveIntersect = () => {
-      const num = env.lengthLine - 2 * env.radiusBall;
 
-      const centerX = (coords.y2 - coords.y1 + coords.x1 + coords.x2 + num) / 2;
-      // 140 is the 280/2 and 1 is hight of line/2 - one side of padding
-      const centerY = centerX - (coords.x1 + num / 2) + coords.y1 - 1;
-      center.style.top = `${centerY}px`;
-      center.style.left = `${centerX}px`;
-      // 800 is width of canvas 10 is width of ball/2
+      const centers = getCenter(coords, env);
+      const centerX = centers[0];
+      const centerY = centers[1];
 
-      price.innerHTML = ((env.height - centerY - env.radiusBall) / env.scaleY + 0.08).toFixed(2);
-      quantity.innerHTML = ((centerX + env.radiusBall) / env.scaleX - 0.02).toFixed(2);
+      console.log("Center: ", centerX, centerY);
 
-      side.style.width = `${centerX + env.radiusBall}px`;
-      side.style.top = `${centerY + env.radiusBall - 1}px`;
-      up.style.left = `${centerX + env.radiusBall - 1}px`;
-      up.style.top = `${centerY + env.radiusBall}px`;
+      center.style.top = `${centerY-10}px`;
+      center.style.left = `${centerX-10}px`;
+      //10 is width of ball/2
+
+      price.innerHTML = ((env.height - centerY) / env.scaleY).toFixed(2);
+      quantity.innerHTML = (centerX / env.scaleX).toFixed(2);
+
+      side.style.width = `${centerX}px`;
+      side.style.top = `${centerY - 1}px`;
+      up.style.left = `${centerX-1}px`;
+      up.style.top = `${centerY}px`;
+      up.style.height = `${env.height - centerY}px`;
       
       follower.style.top = `${centerY}px`;
       follower.style.left = `${centerX}px`;
@@ -73,7 +71,31 @@ function useDragger(centerID, id1, id2, env) {
       
     };
     //initialize center
+    const targertCenterX = env.width / 2 + round(env.width/2, env.lineWidth)
+    const targertCenterY = env.height / 2 + round(env.height/2, env.lineWidth)
+
+    const centers = getCenter(coords, env);
+    const centerX = centers[0];
+    const centerY = centers[1];
+
+    coords.y1 = coords.y1 + (targertCenterY-centerY);
+    target1.style.top = `${coords.y1}px`;
+    coords.y2 = coords.y2 + (targertCenterY-centerY);
+    target2.style.top = `${coords.y2}px`;
+
+    coords.x1 = coords.x1 + (targertCenterX-centerX);
+    target1.style.left = `${coords.x1}px`;
+    coords.x2 = coords.x2 + (targertCenterX-centerX);
+    target2.style.left = `${coords.x2}px`;
+
+
     moveIntersect();
+
+    //saves initial positions
+    coords1.current.lastX = target1.offsetLeft;
+    coords1.current.lastY = target1.offsetTop;
+    coords2.current.lastX = target2.offsetLeft;
+    coords2.current.lastY = target2.offsetTop;
 
     //when clicked save pos of click
     const onMouseDown1 = (e) => {
@@ -84,8 +106,21 @@ function useDragger(centerID, id1, id2, env) {
     //when let go save pos
     const onMouseUp1 = (e) => {
       isClicked1.current = false;
+      const centers = getCenter(coords, env);
+      const centerX = centers[0];
+      const centerY = centers[1];
+
+      const nextY = target1.offsetTop;
+      const nextX = target1.offsetLeft + 2*round(centerX, env.lineWidth);
+
+      target1.style.top = `${nextY}px`;
+      target1.style.left = `${nextX}px`;
+      coords.x1 = nextX;
+      coords.y1 = nextY;
       coords1.current.lastX = target1.offsetLeft;
       coords1.current.lastY = target1.offsetTop;
+
+      moveIntersect()
     };
     //when moved, set pos to last pos plus change in mouse from start
     const onMouseMove1 = (e) => {
@@ -108,8 +143,22 @@ function useDragger(centerID, id1, id2, env) {
     };
     const onMouseUp2 = (e) => {
       isClicked2.current = false;
+      const centers = getCenter(coords, env);
+      const centerX = centers[0];
+      const centerY = centers[1];
+
+      const nextY = target2.offsetTop;
+      const nextX = target2.offsetLeft + 2*round(centerX, env.lineWidth);
+      
+      target2.style.top = `${nextY}px`;
+      target2.style.left = `${nextX}px`;
+      coords.x2 = nextX;
+      coords.y2 = nextY;
       coords2.current.lastX = target2.offsetLeft;
       coords2.current.lastY = target2.offsetTop;
+
+      moveIntersect()
+      
     };
     const onMouseMove2 = (e) => {
       if (!isClicked2.current) return;
@@ -158,6 +207,18 @@ function useDragger(centerID, id1, id2, env) {
 
     return cleanup;
   }, [centerID, id1, id2, env]);
+}
+
+function round(number, to){
+  const rem = number % to;
+  if (rem < to/2) return  -1*rem
+  else return to - rem 
+}
+
+function getCenter(coords, env){
+  const centerX = (coords.y2 - coords.y1 + coords.x1 + coords.x2 +env.lengthLine) / 2;
+  const centerY = (centerX - coords.x1 - env.lengthLine / 2) + env.widthLine/2 + coords.y1;
+  return [centerX, centerY];
 }
 
 export default useDragger;
