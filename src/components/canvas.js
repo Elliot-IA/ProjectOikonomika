@@ -1,4 +1,5 @@
 import Line from "./line";
+import Curve from "./curve";
 import Point from "./point";
 import GridLine from "./gridLine";
 import Follower from "./follower";
@@ -21,18 +22,12 @@ export default function Canvas({ env }) {
         <GridLine env={env}></GridLine>
         <Key></Key>
         <ConnectionLines></ConnectionLines>
-        <Line
-          id={"demand"}
-          angle={45}
-          color={"blue"}
-          env={env}
-        ></Line>
-        <Line
-          id={"supply"}
-          angle={-45}
-          color={"red"}
-          env={env}
-        ></Line>
+        {
+        //<Line id={"demand"} angle={45} color={"blue"} env={env} ></Line>
+        //<Line id={"supply"} angle={-45} color={"red"} env={env} ></Line>}
+        }
+        <Curve id={'demand'} color={'blue'} angle={0}></Curve>
+        <Curve id={'supply'} color={'red'} angle={90}></Curve>
         <Point env={env} trackID={["demand", "supply"]}></Point>
         <Follower env={env} trackID={["demand", "supply"]}></Follower>
       </div>

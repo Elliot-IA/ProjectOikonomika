@@ -1,4 +1,5 @@
 import useIntersect from "../hooks/useIntersect";
+import useIntersectCurve from "../hooks/useIntersectCurve";
 
 export default function Point({ env, trackID }) {
   const style = {
@@ -9,6 +10,7 @@ export default function Point({ env, trackID }) {
     position: "absolute",
     color: `${env.height}`,
   };
-  useIntersect("center", trackID[0], trackID[1], env);
+  //useIntersect("center", trackID[0], trackID[1], env);
+  useIntersectCurve("center", trackID[0], trackID[1], env);
   return <div id="center" style={style}></div>;
 }
