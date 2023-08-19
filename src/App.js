@@ -21,7 +21,7 @@ function App() {
 
   return (
     <div className="App" style={{ display: "grid", placeItems: "center" }}>
-      <h1>Supply & Demand Live</h1>
+      <h1 className="not-selectable">Supply & Demand Live</h1>
       <Graph env={envObject}></Graph>
       <Settings env={envObject} setEnv={setEnv}></Settings>
     </div>

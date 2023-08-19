@@ -39,12 +39,12 @@ export default function Numbers({ env }) {
   return (
     <div>
       {[...Array(nY).keys()].map((m) => (
-        <div key={m} style={styleY(m)}>
+        <div key={m} style={styleY(m)} className="not-selectable">
           {"$" + ((height - spaceY * (m + 1) * lineWidth) / env.scaleY).toFixed(2)}
         </div>
       ))}
       {[...Array(nX).keys()].map((m) => (
-        <div key={m} style={styleX(m)}>
+        <div key={m} style={styleX(m)} className="not-selectable">
           {Math.round((spaceX * (m + 1) * lineWidth) / env.scaleX)}
         </div>
       ))}

@@ -25,11 +25,13 @@ export default function Canvas({ env }) {
           id={"demand"}
           angle={45}
           color={"blue"}
+          env={env}
         ></Line>
         <Line
           id={"supply"}
           angle={-45}
           color={"red"}
+          env={env}
         ></Line>
         <Point env={env} trackID={["demand", "supply"]}></Point>
         <Follower env={env} trackID={["demand", "supply"]}></Follower>

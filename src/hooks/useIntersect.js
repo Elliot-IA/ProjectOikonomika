@@ -49,8 +49,6 @@ function useDragger(centerID, id1, id2, env) {
       const centerX = centers[0];
       const centerY = centers[1];
 
-      console.log("Center: ", centerX, centerY);
-
       center.style.top = `${centerY-10}px`;
       center.style.left = `${centerX-10}px`;
       //10 is width of ball/2
@@ -102,9 +100,11 @@ function useDragger(centerID, id1, id2, env) {
       isClicked1.current = true;
       coords1.current.startX = e.clientX;
       coords1.current.startY = e.clientY;
+      container.addEventListener("mouseleave", onMouseUp1);
     };
     //when let go save pos
     const onMouseUp1 = (e) => {
+      
       isClicked1.current = false;
       const centers = getCenter(coords, env);
       const centerX = centers[0];
@@ -121,13 +121,33 @@ function useDragger(centerID, id1, id2, env) {
       coords1.current.lastY = target1.offsetTop;
 
       moveIntersect()
+      container.removeEventListener("mouseleave", onMouseUp1);
     };
     //when moved, set pos to last pos plus change in mouse from start
     const onMouseMove1 = (e) => {
       if (!isClicked1.current) return;
 
-      const nextX = e.clientX - coords1.current.startX + coords1.current.lastX;
-      const nextY = e.clientY - coords1.current.startY + coords1.current.lastY;
+      let nextX = e.clientX - coords1.current.startX + coords1.current.lastX;
+      let nextY = e.clientY - coords1.current.startY + coords1.current.lastY;
+      
+      const num = env.lengthLine/(2*Math.sqrt(2));
+      const startX = env.lengthLine/2 + nextX - num
+      const startY = nextY + env.widthLine/2 - num
+      const endX = env.lengthLine/2 + nextX + num
+      const endY = nextY + env.widthLine/2 + num
+
+      if (startX > -1*env.lineWidth && startY > -1*env.lineWidth ){
+        nextX -= env.lineWidth;
+        nextY -= env.lineWidth;
+        coords1.current.lastX -= env.lineWidth;
+        coords1.current.lastY -= env.lineWidth;
+      }
+      if (endX < env.width+env.lineWidth && endY < env.height+env.lineWidth ){
+        nextX += env.lineWidth;
+        nextY += env.lineWidth;
+        coords1.current.lastX += env.lineWidth;
+        coords1.current.lastY += env.lineWidth;
+      }
 
       target1.style.top = `${nextY}px`;
       target1.style.left = `${nextX}px`;
@@ -140,6 +160,7 @@ function useDragger(centerID, id1, id2, env) {
       isClicked2.current = true;
       coords2.current.startX = e.clientX;
       coords2.current.startY = e.clientY;
+      container.addEventListener("mouseleave", onMouseUp2);
     };
     const onMouseUp2 = (e) => {
       isClicked2.current = false;
@@ -158,13 +179,33 @@ function useDragger(centerID, id1, id2, env) {
       coords2.current.lastY = target2.offsetTop;
 
       moveIntersect()
-      
+      container.removeEventListener("mouseleave", onMouseUp2);
     };
     const onMouseMove2 = (e) => {
       if (!isClicked2.current) return;
 
-      const nextX = e.clientX - coords2.current.startX + coords2.current.lastX;
-      const nextY = e.clientY - coords2.current.startY + coords2.current.lastY;
+      let nextX = e.clientX - coords2.current.startX + coords2.current.lastX;
+      let nextY = e.clientY - coords2.current.startY + coords2.current.lastY;
+
+      const num = env.lengthLine/(2*Math.sqrt(2));
+      const startX = env.lengthLine/2 + nextX - num
+      const startY = nextY + env.widthLine/2 + num
+      const endX = env.lengthLine/2 + nextX + num
+      const endY = nextY + env.widthLine/2 - num
+
+      if (startX > -1*env.lineWidth && startY < env.height+env.lineWidth ){
+        nextX -= env.lineWidth;
+        nextY += env.lineWidth;
+        coords2.current.lastX -= env.lineWidth;
+        coords2.current.lastY += env.lineWidth;
+      }
+      if (endX < env.width+env.lineWidth && endY > -1*env.lineWidth ){
+        nextX += env.lineWidth;
+        nextY -= env.lineWidth;
+        coords2.current.lastX += env.lineWidth;
+        coords2.current.lastY -= env.lineWidth;
+      }
+
 
       target2.style.top = `${nextY}px`;
       target2.style.left = `${nextX}px`;
@@ -177,12 +218,11 @@ function useDragger(centerID, id1, id2, env) {
     target1.addEventListener("mousedown", onMouseDown1);
     target1.addEventListener("mouseup", onMouseUp1);
     container.addEventListener("mousemove", onMouseMove1);
-    container.addEventListener("mouseleave", onMouseUp1);
     //event listeners for 2
     target2.addEventListener("mousedown", onMouseDown2);
     target2.addEventListener("mouseup", onMouseUp2);
     container.addEventListener("mousemove", onMouseMove2);
-    container.addEventListener("mouseleave", onMouseUp2);
+    
 
     const reset = () => {
       isClicked1.current = false;
@@ -197,12 +237,11 @@ function useDragger(centerID, id1, id2, env) {
       target1.removeEventListener("mousedown", onMouseDown1);
       target1.removeEventListener("mouseup", onMouseUp1);
       container.removeEventListener("mousemove", onMouseMove1);
-      container.removeEventListener("mouseleave", onMouseUp1);
 
       target2.removeEventListener("mousedown", onMouseDown2);
       target2.removeEventListener("mouseup", onMouseUp2);
       container.removeEventListener("mousemove", onMouseMove2);
-      container.removeEventListener("mouseleave", onMouseUp2);
+      
     };
 
     return cleanup;

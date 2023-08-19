@@ -1,6 +1,5 @@
-import env from "../env.js";
 
-export default function Line({ angle, id, color }) {
+export default function Line({ angle, id, color, env }) {
   const styleColor = {
     backgroundColor: color,
     width: `${env.lengthLine}px`,

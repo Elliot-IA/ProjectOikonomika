@@ -16,7 +16,7 @@ const env = {
   scaleX: 50,
 
   //length of line
-  lengthLine: 1000,
+  lengthLine: 1202, //should be Math.floor((min(env.labelX, env.labelY)+5)*Math.sqrt(2)*lineWidth),
   widthLine: 18,
 
   //ball radius

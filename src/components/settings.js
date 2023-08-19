@@ -3,16 +3,27 @@ import queryString from "query-string";
 export default function Settings({ env, setEnv }) {
   function setEnvHelper(name, value) {
     if (name === "xLabelsNum") {
-      return { ...env, labelX: value, width: (value + 1) * env.lineWidth };
+      return {
+        ...env,
+        labelX: value,
+        width: (value + 1) * env.lineWidth,
+        lengthLine: Math.floor((Math.min(value, env.labelY)+5)*Math.sqrt(2)*env.lineWidth),
+      };
     }
     if (name === "yLabelsNum") {
-      return { ...env, labelY: value, height: (value + 1) * env.lineWidth };
+      return {
+        ...env,
+        labelY: value,
+        height: (value + 1) * env.lineWidth,
+        lengthLine: Math.floor((Math.min(env.labelX, value)+5)*Math.sqrt(2)*env.lineWidth),
+      };
     }
     if (name === "space") {
       return {
         ...env,
         width: (env.labelX + 1) * value,
         height: (env.labelY + 1) * value,
+        lengthLine: Math.floor((Math.min(env.labelX, env.labelY)+5)*Math.sqrt(2)*value),
         lineWidth: value,
         scaleX: (env.scaleX / env.lineWidth) * value,
         scaleY: (env.scaleY / env.lineWidth) * value,
