@@ -1,4 +1,3 @@
-import useIntersect from "../hooks/useIntersect";
 
 export default function Follower({ env, trackID }) {
   const stylePos = {

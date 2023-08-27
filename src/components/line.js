@@ -1,5 +1,5 @@
 
-export default function Line({ angle, id, color, env }) {
+export default function Line2({ angle, id, color, env }) {
   const styleColor = {
     backgroundColor: color,
     width: `${env.lengthLine}px`,

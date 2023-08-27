@@ -12,6 +12,7 @@ function useDragger(id) {
 
   useEffect(() => {
     const target = document.getElementById(id);
+
     if (!target) throw new Error("Element with given id doesn't exist");
 
     const container = target.parentElement;

@@ -24,6 +24,9 @@ const env = {
 
   //names
   name: "",
+
+  //macro or micro
+  macro: false,
 };
 
 export default env;

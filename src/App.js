@@ -12,7 +12,9 @@ function App() {
   useEffect(() => {
     const urlParams = queryString.parse(window.location.search);
     Object.keys(urlParams).forEach((key) => {
-      urlParams[key] = key !== "name" ? Number(urlParams[key]) : urlParams[key];
+      if (key === "name") urlParams[key] = urlParams[key]
+      else if (key === "macro") urlParams[key] = (urlParams[key]) === 'true'
+      else urlParams[key] = Number(urlParams[key])
     });
     if (Object.keys(urlParams).length > 0) {
       setEnv({ ...urlParams });
