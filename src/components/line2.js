@@ -7,7 +7,7 @@ export default function Line({ id, env }) {
         width: `${10}px`,
         height: `${env.height * 1.2}px`,
         borderRadius: "5px",
-        cursor: "pointer",
+        //cursor: "pointer",
     };
     const stylePos = {
         padding: "4px 0px 4px 0px",

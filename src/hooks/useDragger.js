@@ -12,6 +12,8 @@ function useDragger(id) {
 
   useEffect(() => {
     const target = document.getElementById(id);
+    coords.current.lastX = Number(target.style.left.slice(0, -2));
+    coords.current.lastY = Number(target.style.top.slice(0, -2));
 
     if (!target) throw new Error("Element with given id doesn't exist");
 

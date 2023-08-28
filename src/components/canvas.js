@@ -30,7 +30,7 @@ export default function Canvas({ env }) {
 
         {env.macro && <Curve id={'demand'} color={'blue'} angle={0}></Curve>}
         {env.macro && <Curve id={'supply'} color={'red'} angle={90}></Curve>}
-        {env.macro && <Line2 id={'testasd'} env={env}></Line2>}
+        {env.macro && <Line2 id={'tracker'} env={env}></Line2>}
         {env.macro && <PointCurve env={env} trackID={["demand", "supply"]}></PointCurve>}
 
         <Follower env={env} trackID={["demand", "supply"]}></Follower>
