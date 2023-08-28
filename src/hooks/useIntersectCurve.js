@@ -190,7 +190,7 @@ function useDragger(centerID, id1, id2, env) {
 
 
 function getCenter(coords, env) {
-  const r = 500 - 2.5;
+  const r = 500 - 5;
   const r2 = r ** 2
 
   //from center
