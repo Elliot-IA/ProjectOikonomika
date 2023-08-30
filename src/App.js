@@ -6,6 +6,14 @@ import Settings from "./components/settings";
 import queryString from "query-string";
 import { useState, useEffect } from "react";
 
+import ReactGA from 'react-ga4';
+const TRACKING_ID = "G-638SW67Q6Y"; // OUR_TRACKING_ID
+ReactGA.initialize(TRACKING_ID);
+ReactGA.send({
+  hitType: "pageview",
+  page: window.location.pathname,
+});
+
 function App() {
   const [envObject, setEnv] = useState(env);
 
