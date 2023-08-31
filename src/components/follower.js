@@ -1,4 +1,3 @@
-import useIntersect from "../hooks/useIntersect";
 
 export default function Follower({ env, trackID }) {
   const stylePos = {
@@ -8,7 +7,7 @@ export default function Follower({ env, trackID }) {
     borderRadius: "10px",
     position: "absolute",
     marginLeft: "40px",
-    marginTop: "-10px",
+    marginTop: "-20px",
     border: "1px solid black",
     textAlign: "center",
     userSelect: "none",

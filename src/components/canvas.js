@@ -1,6 +1,8 @@
 import Line from "./line";
+import Line2 from "./line2";
 import Curve from "./curve";
 import Point from "./point";
+import PointCurve from "./pointCurve";
 import GridLine from "./gridLine";
 import Follower from "./follower";
 import Numbers from "./numbers";
@@ -10,7 +12,6 @@ import Key from "./key.js";
 export default function Canvas({ env }) {
   const width = env.width;
   const height = env.height;
-  const offset = ((Math.sqrt(2) / 2) * env.lengthLine) / 2;
 
   return (
     <div style={{ width: `${width + 80}px`, height: `${height + 20}px`, position: "relative" }}>
@@ -22,16 +23,18 @@ export default function Canvas({ env }) {
         <GridLine env={env}></GridLine>
         <Key></Key>
         <ConnectionLines></ConnectionLines>
-        {
-        //<Curve id={'demand'} color={'blue'} angle={0}></Curve>
-        //<Curve id={'supply'} color={'red'} angle={90}></Curve>
-        }
-        <Line id={"demand"} angle={45} color={"blue"} env={env} ></Line>
-        <Line id={"supply"} angle={-45} color={"red"} env={env} ></Line>
-       
-        <Point env={env} trackID={["demand", "supply"]}></Point>
+
+        {!env.macro && <Line id={"demand"} angle={45} color={"blue"} env={env} ></Line>}
+        {!env.macro && <Line id={"supply"} angle={-45} color={"red"} env={env} ></Line>}
+        {!env.macro && <Point env={env} trackID={["demand", "supply"]}></Point>}
+
+        {env.macro && <Curve id={'demand'} color={'blue'} angle={0}></Curve>}
+        {env.macro && <Curve id={'supply'} color={'red'} angle={90}></Curve>}
+        {env.macro && <Line2 id={'tracker'} env={env}></Line2>}
+        {env.macro && <PointCurve env={env} trackID={["demand", "supply"]}></PointCurve>}
+
         <Follower env={env} trackID={["demand", "supply"]}></Follower>
       </div>
-    </div>
+    </div >
   );
 }

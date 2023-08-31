@@ -2,7 +2,7 @@ import Canvas from "./canvas";
 
 export default function Graph({ env }) {
   return (
-    <div style={{ display: "Grid", gridTemplateColumns: "30px auto", gap: "2px" }}>
+    <div style={{ display: "Grid", gridTemplateColumns: "30px auto", gap: "2px", paddingRight: "110px" }}>
       <div
         style={{
           height: `${env.height}px`,
@@ -21,7 +21,7 @@ export default function Graph({ env }) {
         style={{
           height: "30px",
           width: `${env.width}px`,
-          marginLeft: "20px",
+          marginLeft: "80px",
           display: "flex",
           justifyContent: "center",
         }}

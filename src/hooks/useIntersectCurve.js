@@ -49,8 +49,8 @@ function useDragger(centerID, id1, id2, env) {
       const centerX = centers[0];
       const centerY = centers[1];
 
-      center.style.top = `${centerY-10}px`;
-      center.style.left = `${centerX-10}px`;
+      center.style.top = `${centerY - 10}px`;
+      center.style.left = `${centerX - 10}px`;
       //10 is width of ball/2
 
       price.innerHTML = ((env.height - centerY) / env.scaleY).toFixed(2);
@@ -58,15 +58,15 @@ function useDragger(centerID, id1, id2, env) {
 
       side.style.width = `${centerX}px`;
       side.style.top = `${centerY - 1}px`;
-      up.style.left = `${centerX-1}px`;
+      up.style.left = `${centerX - 1}px`;
       up.style.top = `${centerY}px`;
       up.style.height = `${env.height - centerY}px`;
-      
+
       follower.style.top = `${centerY}px`;
       follower.style.left = `${centerX}px`;
       if (centerX < 0.75 * env.width) follower.style.marginLeft = '40px';
       else follower.style.marginLeft = '-165px';
-      
+
     };
     //initialize center
 
@@ -89,7 +89,7 @@ function useDragger(centerID, id1, id2, env) {
     };
     //when let go save pos
     const onMouseUp1 = (e) => {
-      
+
       isClicked1.current = false;
 
       const nextY = target1.offsetTop;
@@ -111,7 +111,7 @@ function useDragger(centerID, id1, id2, env) {
 
       let nextX = e.clientX - coords1.current.startX + coords1.current.lastX;
       let nextY = e.clientY - coords1.current.startY + coords1.current.lastY;
-      
+
       target1.style.top = `${nextY}px`;
       target1.style.left = `${nextX}px`;
       coords.x1 = nextX;
@@ -130,7 +130,7 @@ function useDragger(centerID, id1, id2, env) {
 
       const nextY = target2.offsetTop;
       const nextX = target2.offsetLeft;
-      
+
       target2.style.top = `${nextY}px`;
       target2.style.left = `${nextX}px`;
       coords.x2 = nextX;
@@ -162,7 +162,7 @@ function useDragger(centerID, id1, id2, env) {
     target2.addEventListener("mousedown", onMouseDown2);
     target2.addEventListener("mouseup", onMouseUp2);
     container.addEventListener("mousemove", onMouseMove2);
-    
+
 
     const reset = () => {
       isClicked1.current = false;
@@ -181,44 +181,54 @@ function useDragger(centerID, id1, id2, env) {
       target2.removeEventListener("mousedown", onMouseDown2);
       target2.removeEventListener("mouseup", onMouseUp2);
       container.removeEventListener("mousemove", onMouseMove2);
-      
+
     };
 
     return cleanup;
   }, [centerID, id1, id2, env]);
 }
 
-function round(number, to){
-  const rem = number % to;
-  if (rem < to/2) return  -1*rem
-  else return to - rem 
-}
 
-function getCenter(coords, env){
+function getCenter(coords, env) {
+  const r = 500 - 5;
+  const r2 = r ** 2
 
   //from center
-  const x1=coords.x1+5;
-  const y1=coords.y1+5;
-  const x2=coords.x2+5 + 500;
-  const y2=coords.y2+5;
+  const x1 = coords.x1;
+  const y1 = coords.y1;
+  const x2 = coords.x2 + r;
+  const y2 = coords.y2;
+
+  //document.getElementById('C1').style.top = `${y1 - r}px`;
+  //document.getElementById('C1').style.left = `${x1 - r}px`;
+  //document.getElementById('C2').style.top = `${y2 - r}px`;
+  //document.getElementById('C2').style.left = `${x2 - r}px`;
 
 
-  //difference of two circles
-  const f = (x) => Math.sqrt(500*500-Math.pow((x-x1), 2)) - Math.sqrt(500*500-Math.pow((x-x2), 2)) - y2 + y1;
-  //derivative of above
-  const d = (x) => (x1-x)/Math.sqrt(500*500-Math.pow((x-x1), 2)) - (x2-x)/Math.sqrt(500*500-Math.pow((x-x2), 2))
+  const c1 = (x) => -1 * Math.sqrt(r2 - (x - x1) ** 2) - y1;
+  const c2 = (x) => -1 * Math.sqrt(r2 - (x - x2) ** 2) - y2;
 
-  //guess the average x
-  let g = (x1+x2)/2
+  const dx = x2 - x1;
+  const dy = y1 - y2;
 
-  //newtons method
-  for (let i = 0; i < 5; i++){
-    g = g - f(g)/d(g)
+  const sqrt = Math.sqrt(-1 * dx ** 4 * dy ** 2 - 2 * dx ** 2 * dy ** 4 + r2 * 4 * dx ** 2 * dy ** 2 - dy ** 6 + r2 * 4 * dy ** 4)
+
+  const s1 = (dx ** 3 + sqrt + dx * dy ** 2) / (2 * (dx ** 2 + dy ** 2)) + x1
+  const s2 = (dx ** 3 - sqrt + dx * dy ** 2) / (2 * (dx ** 2 + dy ** 2)) + x1
+
+
+  let centerX;
+  let centerY;
+
+  if (Math.abs(c1(s1) - c2(s1)) < Math.abs(c1(s2) - c2(s2))) {
+    centerX = s1;
+  }
+  else {
+    centerX = s2;
   }
 
-  const centerX = g -5
-  const centerY = Math.sqrt(500*500 - Math.pow(centerX - x1, 2)) + y1 - 10
-  console.log(centerY)
+  centerY = -1 * c1(centerX)
+
   return [centerX, centerY];
 }
 
