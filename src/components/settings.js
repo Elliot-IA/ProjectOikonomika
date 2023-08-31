@@ -1,6 +1,6 @@
 import queryString from "query-string";
 
-export default function Settings({ env, setEnv }) {
+export default function Settings({ env, setEnv, show }) {
   function setEnvHelper(name, value) {
     if (name === "xLabelsNum") {
       return {
@@ -68,8 +68,11 @@ export default function Settings({ env, setEnv }) {
     { name: "scaleY", display: "Scale Y", type: "number", fill: Math.round(env.height / (env.labelY + 1) / env.scaleY) },
     { name: "macro", display: "Macro", type: "checkbox", fill: env.macro },
   ];
+  console.log(show)
   return (
-    <div style={{ border: "1px solid black" }}>
+    <div style={{
+      border: "1px solid black", visibility: show ? "visible" : "hidden", height: "fit-content", marginTop: "-50px"
+    }}>
       {values.map((item) => (
         <Item
           key={item.name}
@@ -87,7 +90,7 @@ export default function Settings({ env, setEnv }) {
 function Item({ display, name, handleEnvChange, type, fill }) {
   //console.log(type, fill, env.macro)
   return (
-    <div style={{ display: "flex", alignItems: "center", margin: "5px" }}>
+    <div style={{ display: "flex", alignItems: "center", margin: "5px", width: "320px" }}>
       <div style={{ marginRight: "10px", width: "150px" }}>{display + ":"}</div>
       {type !== 'checkbox' && <input type={type} name={name} onChange={handleEnvChange} value={fill} />}
       {type === 'checkbox' && <input type={type} name={name} onChange={handleEnvChange} checked={fill} />}

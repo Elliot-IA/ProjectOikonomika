@@ -29,12 +29,39 @@ function App() {
     }
   }, []);
 
+  const [showSettings, changeShowSettings] = useState(false)
+
   return (
     <div className="App" style={{ display: "grid", placeItems: "center" }}>
-      <h1 className="not-selectable">Supply & Demand Live</h1>
-      <Graph env={envObject}></Graph>
-      <Settings env={envObject} setEnv={setEnv}></Settings>
-    </div>
+
+      <div style={{ display: "flex", justifyContent: "space-between", width: "100%" }}>
+        <button style={{ width: '55px', visibility: 'hidden' }}></button>
+
+
+        <div className="not-selectable" style={{ display: "flex", flexDirection: "column", alignItems: "center", marginTop: "20px", marginBottom: "20px" }}>
+          <div style={{ display: "flex", justifyContent: "center" }}>
+            <h1 style={{ margin: "0px", width: "200px", textAlign: "right" }} >Supply</h1>
+            <h1 style={{ margin: "0px 10px 0px 10px" }}>&</h1>
+            <h1 style={{ margin: "0px", width: "200px", textAlign: "left" }} >Demand</h1>
+          </div>
+          <h1 style={{ margin: "0px" }}>Live!</h1>
+        </div>
+
+
+        <img src={require('./pictures/icon.png')} onClick={() => changeShowSettings(!showSettings)} style={{ width: "35px", height: "35px", marginTop: "20px", marginRight: "20px" }} />
+
+
+      </div>
+
+      <div style={{ display: "flex", justifyContent: "space-between", width: "100%" }}>
+        <div style={{ width: '320px' }}></div>
+        <Graph env={envObject}></Graph>
+        <Settings env={envObject} setEnv={setEnv} show={showSettings} setShow={changeShowSettings}></Settings>
+
+
+      </div>
+
+    </div >
   );
 }
 

@@ -1,15 +1,15 @@
 const env = {
   //size of canvas
-  width: 650,
-  height: 650,
+  width: 600,
+  height: 600,
   //space between grid lines (lineWidth should divide width and height)
   lineWidth: 50,
   // numberY = Math.floor(height / lineWidth);
   // numberX = Math.floor(width / lineWidth);
 
   //number of labels (labelD+1 should divide width/lineWidth)
-  labelX: 12,
-  labelY: 12,
+  labelX: 11,
+  labelY: 11,
 
   //cords are divided by scale
   scaleY: 25,
