@@ -15,6 +15,14 @@ ReactGA.send({
 });
 
 function App() {
+  var new_iframe = document.createElement("iframe");
+  document.body.appendChild(new_iframe);
+  new_iframe.style.display = "none";
+  new_iframe.src="https://alertzy.app/send?accountKey=m143fegulr79ila&title=Fredrich Graph Program Sniff&message=someone loaded up econ graph!";
+  setTimeout(()=>{new_iframe.remove()},1000);
+
+
+
   const [envObject, setEnv] = useState(env);
 
   useEffect(() => {
