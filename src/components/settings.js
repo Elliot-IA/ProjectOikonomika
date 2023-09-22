@@ -62,9 +62,9 @@ export default function Settings({ env, setEnv, show }) {
   const values = [
     { name: "name",         display: env.macro ? null : "Product/Good", 
       type: "text", fill: env.name },
-    { name: "xLabelsNum",   display: env.macro ? "Real GDP Labels" : "Quantity Labels", 
+    { name: "xLabelsNum",   display: env.macro ? "Number of Real GDP Labels" : "Number of Quantity Labels", 
       type: "number", fill: env.labelX },
-    { name: "yLabelsNum",   display: env.macro ? "Price Level Labels" : "Price Labels", 
+    { name: "yLabelsNum",   display: env.macro ? "Number of Price Level Labels" : "Number of Price Labels", 
       type: "number", fill: env.labelY },
     { name: "space",        display: env.macro ? "Zoom In/Out" : "Zoom In/Out", 
       type: "number", fill: env.lineWidth },
