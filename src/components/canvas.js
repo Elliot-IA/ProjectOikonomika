@@ -21,7 +21,7 @@ export default function Canvas({ env }) {
         style={{ width: `${width}px`, height: `${height}px`, left: "80px", top: "0px", position: "absolute" }}
       >
         <GridLine env={env}></GridLine>
-        <Key></Key>
+        <Key env={env}></Key>
         <ConnectionLines></ConnectionLines>
 
         {!env.macro && <Line id={"demand"} angle={45} color={"blue"} env={env} ></Line>}

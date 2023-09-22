@@ -13,7 +13,8 @@ export default function Graph({ env }) {
           justifyContent: "center",
         }}
       >
-        <strong className="not-selectable">{"Price" + (env.name ? " of " + env.name : "")}</strong>
+        {!env.macro && <strong className="not-selectable">{"Price" + (env.name ? " of " + env.name : "")}</strong>}
+        {env.macro && <strong className="not-selectable">{"Price Level" + (env.name ? " of " + env.name : "")}</strong>}
       </div>
       <Canvas env={env}></Canvas>
       <div style={{ height: "30px", width: "30px" }}>{/*SPACER*/}</div>
@@ -26,7 +27,8 @@ export default function Graph({ env }) {
           justifyContent: "center",
         }}
       >
-        <strong className="not-selectable">{"Quantity" + (env.name ? " of " + env.name : "")}</strong>
+        {!env.macro && <strong className="not-selectable">{"Quantity" + (env.name ? " of " + env.name : "")}</strong>}
+        {env.macro && <strong className="not-selectable">{"Real GDP" + (env.name ? " of " + env.name : "")}</strong>}
       </div>
     </div>
   );

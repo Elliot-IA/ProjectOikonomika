@@ -40,9 +40,11 @@ function App() {
 
         <div className="not-selectable" style={{ display: "flex", flexDirection: "column", alignItems: "center", marginTop: "20px", marginBottom: "20px" }}>
           <div style={{ display: "flex", justifyContent: "center" }}>
-            <h1 style={{ margin: "0px", width: "200px", textAlign: "right" }} >Supply</h1>
+            {!envObject.macro && <h1 style={{ margin: "0px", width: "200px", textAlign: "right" }} >Supply</h1>}
+            {envObject.macro && <h1 style={{ margin: "0px", width: "300px", textAlign: "right" }} >Aggregate Supply</h1>}
             <h1 style={{ margin: "0px 10px 0px 10px" }}>&</h1>
-            <h1 style={{ margin: "0px", width: "200px", textAlign: "left" }} >Demand</h1>
+            {!envObject.macro && <h1 style={{ margin: "0px", width: "200px", textAlign: "left" }} >Demand</h1>}
+            {envObject.macro && <h1 style={{ margin: "0px", width: "300px", textAlign: "left" }} >Aggregate Demand</h1>}
           </div>
           <h1 style={{ margin: "0px" }}>Live!</h1>
         </div>

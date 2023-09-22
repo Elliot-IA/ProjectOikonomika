@@ -64,7 +64,7 @@ function useDragger(centerID, id1, id2, env) {
 
       follower.style.top = `${centerY}px`;
       follower.style.left = `${centerX}px`;
-      if (centerX < 0.75 * env.width) follower.style.marginLeft = '40px';
+      if (centerX < 0.5 * env.width) follower.style.marginLeft = '40px';
       else follower.style.marginLeft = '-165px';
 
     };

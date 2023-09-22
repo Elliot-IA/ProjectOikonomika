@@ -60,21 +60,27 @@ export default function Settings({ env, setEnv, show }) {
   };
 
   const values = [
-    { name: "name", display: "Name", type: "text", fill: env.name },
-    { name: "xLabelsNum", display: "Number of X labels", type: "number", fill: env.labelX },
-    { name: "yLabelsNum", display: "Number of Y labels", type: "number", fill: env.labelY },
-    { name: "space", display: "Line Space (px)", type: "number", fill: env.lineWidth },
-    { name: "scaleX", display: "Scale X", type: "number", fill: Math.round(env.width / (env.labelX + 1) / env.scaleX) },
-    { name: "scaleY", display: "Scale Y", type: "number", fill: Math.round(env.height / (env.labelY + 1) / env.scaleY) },
-    { name: "macro", display: "Macro", type: "checkbox", fill: env.macro },
+    { name: "name",         display: env.macro ? null : "Product/Good", 
+      type: "text", fill: env.name },
+    { name: "xLabelsNum",   display: env.macro ? "Real GDP Labels" : "Quantity Labels", 
+      type: "number", fill: env.labelX },
+    { name: "yLabelsNum",   display: env.macro ? "Price Level Labels" : "Price Labels", 
+      type: "number", fill: env.labelY },
+    { name: "space",        display: env.macro ? "Zoom In/Out" : "Zoom In/Out", 
+      type: "number", fill: env.lineWidth },
+    { name: "scaleX",       display: env.macro ? "Real GDP Increments" : "Quantity Increments", 
+      type: "number", fill: Math.round(env.width / (env.labelX + 1) / env.scaleX) },
+    { name: "scaleY",       display: env.macro ? "Price Level Increments" : "Price Increments", 
+      type: "number", fill: Math.round(env.height / (env.labelY + 1) / env.scaleY) },
+    { name: "macro",        display: env.macro ? "Click for Supply/Demand Graph" : "Click for Macro Graph", 
+      type: "checkbox", fill: env.macro },
   ];
-  console.log(show)
   return (
     <div style={{
       border: "1px solid black", visibility: show ? "visible" : "hidden", height: "fit-content", marginTop: "-50px"
     }}>
       {values.map((item) => (
-        <Item
+          <Item
           key={item.name}
           display={item.display}
           name={item.name}
@@ -88,10 +94,10 @@ export default function Settings({ env, setEnv, show }) {
 }
 
 function Item({ display, name, handleEnvChange, type, fill }) {
-  //console.log(type, fill, env.macro)
+  if (display == null) return;
   return (
     <div style={{ display: "flex", alignItems: "center", margin: "5px", width: "320px" }}>
-      <div style={{ marginRight: "10px", width: "150px" }}>{display + ":"}</div>
+      <div style={{ marginRight: "10px", width: "200px" }}>{display + ":"}</div>
       {type !== 'checkbox' && <input type={type} name={name} onChange={handleEnvChange} value={fill} />}
       {type === 'checkbox' && <input type={type} name={name} onChange={handleEnvChange} checked={fill} />}
 
