@@ -6,6 +6,7 @@ export default function Curve({ id, color, angle }) {
         height: `${size}px`,
         pointerEvents: 'none',
         transform: `rotate(${angle}deg)`,
+        cursor: "pointer"
     };
     const stylePos = {
       //padding: "4px 0px 4px 0px",
