@@ -70,7 +70,7 @@ export default function Settings({ env, setEnv, show }) {
   ];
   console.log(show)
   return (
-    <div style={{
+    <div id="settings" style={{
       border: "1px solid black", visibility: show ? "visible" : "hidden", height: "fit-content", marginTop: "-50px"
     }}>
       {values.map((item) => (
