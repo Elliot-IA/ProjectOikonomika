@@ -48,13 +48,12 @@ function App() {
         </div>
 
 
-        <img src={require('./pictures/icon.png')} onClick={() => changeShowSettings(!showSettings)} style={{ width: "35px", height: "35px", marginTop: "20px", marginRight: "20px" }} />
+        <img id="settingWheel" src={require('./pictures/icon.png')} onClick={() => changeShowSettings(!showSettings)} style={{ width: "35px", height: "35px", marginTop: "20px", marginRight: "20px" }} />
 
 
       </div>
 
       <div style={{ display: "flex", justifyContent: "space-between", width: "100%" }}>
-        <div style={{ width: '320px' }}></div>
         <Graph env={envObject}></Graph>
         <Settings env={envObject} setEnv={setEnv} show={showSettings} setShow={changeShowSettings}></Settings>
 
