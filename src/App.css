@@ -23,3 +23,25 @@ main {
   -ms-user-select: none;
   user-select: none;
 }
+
+#settings{
+    position: fixed;
+    top: 70px;
+    right: 20px;
+    z-index: 3000;
+    background: white;
+}
+#graph{
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, 0%);
+}
+#settingWheel{
+    cursor: pointer;
+}
+#curve{
+    cursor: pointer;
+}
+#curve:active{
+    cursor: grabbing;
+}
